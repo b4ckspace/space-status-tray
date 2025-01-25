@@ -50,6 +50,9 @@ class SpaceStatus:
     def doActivation(self, reason):
         if reason == self.trayicon.ActivationReason.MiddleClick: # middle mouse clicked
             QDesktopServices.openUrl(QtCore.QUrl("https://www.hackerspace-bamberg.de"))
+        elif reason == self.trayicon.ActivationReason.Trigger:
+            self.trayicon.setIcon(self.icons[-1])
+            self.doRequest()
 
     def doRequest(self):   
 
