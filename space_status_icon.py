@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QDesktopServices
 from PyQt5 import QtCore, QtGui, QtNetwork
 from PyQt5.QtCore import QTimer
 import json
@@ -21,8 +21,8 @@ class SpaceStatus:
 
         self.trayicon = tray = QSystemTrayIcon()
         tray.setIcon(self.icons[-1])
-
         tray.setVisible(True)
+        tray.activated.connect(self.doActivation)
 
         menu = QMenu()
         action = QAction("Quit")
@@ -38,6 +38,10 @@ class SpaceStatus:
         self.doRequest()
 
         app.exec()
+
+    def doActivation(self, reason):
+        if reason == self.trayicon.ActivationReason.MiddleClick: # middle mouse clicked
+            QDesktopServices.openUrl(QtCore.QUrl("https://www.hackerspace-bamberg.de"))
 
     def doRequest(self):   
 
