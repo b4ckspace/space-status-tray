@@ -1,9 +1,17 @@
 #!/usr/bin/python
 
-from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
-from PyQt5.QtGui import QIcon, QDesktopServices
-from PyQt5 import QtCore, QtGui, QtNetwork
-from PyQt5.QtCore import QTimer
+try:
+    from PySide6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
+    from PySide6.QtGui import QIcon, QDesktopServices, QAction
+    from PySide6 import QtCore, QtGui, QtNetwork
+    from PySide6.QtCore import QTimer
+except:
+    print("Using PyQt5")
+    from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
+    from PyQt5.QtGui import QIcon, QDesktopServices
+    from PyQt5 import QtCore, QtGui, QtNetwork
+    from PyQt5.QtCore import QTimer
+
 import json
 
 class SpaceStatus:
