@@ -73,7 +73,7 @@ class SpaceStatus:
                 bytes_string = reply.readAll()
                 data = json.loads(str(bytes_string, 'utf-8'))
                 number = data["sensors"]["people_now_present"][0]["value"]
-                names = data["sensors"]["people_now_present"][0]["names"]
+                names = data["sensors"]["people_now_present"][0].get("names", [])
             except: # XXX
                 number = 0
                 names = ["ERROR"]
