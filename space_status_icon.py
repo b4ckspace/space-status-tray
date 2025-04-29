@@ -22,9 +22,9 @@ class SpaceStatus:
         app.setQuitOnLastWindowClosed(False)
 
         self.icons = [QIcon("icons/backspace-closed.svg")]
-        for i in range(1, 10):
+        for i in range(1, 21):
             self.icons.append(QIcon(f"icons/backspace-open-{i}.svg"))
-        self.icons.append(QIcon(f"icons/backspace-open-1X.svg"))
+        self.icons.append(QIcon(f"icons/backspace-open-2X.svg"))
         self.icons.append(QIcon.fromTheme("user-offline"))
 
         self.trayicon = tray = QSystemTrayIcon()
@@ -78,7 +78,7 @@ class SpaceStatus:
                 number = 0
                 names = ["ERROR"]
 
-            self.trayicon.setIcon(self.icons[min(number, 10)])
+            self.trayicon.setIcon(self.icons[min(number, 21)])
             self.trayicon.setToolTip(", ".join(names))
             #print(number, names)
         else:
