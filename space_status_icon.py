@@ -78,8 +78,16 @@ class SpaceStatus:
                 number = 0
                 names = ["ERROR"]
 
+            names_dict = {}
+            for n in names:
+                names_dict.setdefault(n, 0)
+                names_dict[n] += 1
+
+            num_names = len(names)
+            display_names = [n if names_dict[n] <= 1 else f"{n} ({names_dict[n]}x)" for n in sorted(names_dict.keys())]
+
             self.trayicon.setIcon(self.icons[min(number, 21)])
-            self.trayicon.setToolTip(", ".join(names))
+            self.trayicon.setToolTip(", ".join(display_names))
             #print(number, names)
         else:
             print("Error occured: ", er)
